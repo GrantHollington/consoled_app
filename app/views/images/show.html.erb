@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @image.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @image.description %>
+</p>
+
+<p>
+  <strong>Image path:</strong>
+  <%= @image.image_path %>
+</p>
+
+<p>
+  <strong>Byte size:</strong>
+  <%= @image.byte_size %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @image.profile_id %>
+</p>
+
+<p>
+  <strong>Listing:</strong>
+  <%= @image.listing_id %>
+</p>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
