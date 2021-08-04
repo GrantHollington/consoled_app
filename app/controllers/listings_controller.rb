@@ -34,8 +34,9 @@ class ListingsController < ApplicationController
   # POST /listings or /listings.json
   def create
     @listing = Listing.new(listing_params)
+    Seller.create(:profile_id => current_user.profile.id)
     #associate console listed to a seller
-    @listing.seller_id = current_user.profile.id
+    @listing.seller_id = current_user.profile.seller.id
 
     respond_to do |format|
       if @listing.save
@@ -78,6 +79,7 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:title, :description, :price, :type, :condition, :picture, :buyer_id, :seller_id)
+      #added mutiple pictures to upload as an array and removed picture from listings table
+      params.require(:listing).permit(:title, :description, :price, :product, :condition, :buyer_id, :seller_id, pictures: [])
     end
 end
