@@ -10,9 +10,13 @@
   </head>
 
   <body>
+  
     <%# navbar from partials %>
     <%= render 'partials/navbar' %>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%# div created to create space%>
+    <div class="container">
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

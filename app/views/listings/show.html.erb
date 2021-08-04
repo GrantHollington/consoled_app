@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<%# displaying each image within listing%>
+<% @listing.pictures.each do |picture| %>
+  <%= image_tag picture %>
+
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @listing.title %>
@@ -16,18 +22,13 @@
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @listing.type %>
+  <strong>Product:</strong>
+  <%= @listing.product %>
 </p>
 
 <p>
   <strong>Condition:</strong>
   <%= @listing.condition %>
-</p>
-
-<p>
-  <strong>Picture:</strong>
-  <%= @listing.picture %>
 </p>
 
 <p>
@@ -37,7 +38,7 @@
 
 <p>
   <strong>Seller:</strong>
-  <%= @listing.seller_id %>
+  <%= @listing.seller.profile.user_name %>
 </p>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
