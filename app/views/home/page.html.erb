@@ -5,4 +5,36 @@
     </form>
 </div>
 
-<%= image_tag "gameboycolor.jpg", class: "landing-page-img" %>
+<%# show listings on home page
+ what is the instance variable? 
+ where should it be generated?
+ 
+ @listings 
+ 
+ loop through all the listings and display it in nice fashion%>
+
+ <div class="row">
+    <% @listings.each do |listing| %>
+        <div class="col-md-4">
+            <div class="card">
+            <%#check if listing has an image and display it if it does%>
+                <% if listing.pictures && listing.pictures.first%>
+                    <%= image_tag listing.pictures.first, class: "card-img-top" %>
+                <% else %>
+                <%# add plceholder image%>
+                    <%= image_tag "gameboycolor.jpg", class: "card-img-top"  %>    
+                <% end %>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><%= listing.title%></p>
+                <p>$<%= listing.price%></p>
+                <%= link_to "Explore", listing_path(listing.id), class: "btn btn-primary" %>
+            </div>
+            
+        </div>
+    <% end %>
+ </div>
+
+
+
+
