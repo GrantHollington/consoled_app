@@ -23,3 +23,10 @@
      width: 50%;
      height: 50%;
  }
+
+ // equal sizing of all the images on the home page
+ .card-img-top{
+     width: 100%;
+     height: 15vw;
+     object-fit: cover;     
+ }
