@@ -4,8 +4,15 @@ class PaymentController < ApplicationController
     @listing = Listing.find(params[:listing_id])
 
     #update the buyer
-    @listing.buyer_id = current_user.profile.id
-    @listing.save
+    # @listing.buyer_id = current_user.profile.id
+    # @listing.save
+
+    #fetch the root path
+    if ENV['RAILS_ENV'] == "development"
+      root_path = "http://localhost:3000"
+    else
+      root_path = ENV["ROOT_PATH"]
+    end
 
     #implement stripe code
     Stripe.api_key = Rails.application.credentials.dig(:stripe_api_key)
@@ -17,18 +24,22 @@ class PaymentController < ApplicationController
           product_data: {
             name: @listing.title,
           },
-          unit_amount: @listing.price,
+          unit_amount: @listing.price.to_i * 100,
         },
         quantity: 1,
       }],
       mode: 'payment',
       # These placeholder URLs will be replaced in a following step.
-      #upon success redirected to listing show page, might get the buyer to leave a review
-      success_url: "http://localhost:3000/listings/#{@listing.id}",
+      #upon success redirected to listing show page, might get the buyer to leave a review. use string interpolation to attach the root path.
+      success_url: "#{root_path}/listings/#{@listing.id}?checkout=success",
       #if the payment is cancelled show a cancel message
-      cancel_url: "http://localhost:3000/payment/cancel",
+      cancel_url: "#{root_path}/payment/cancel",
     })
   
-    redirect session.url
+    redirect_to session.url
+  end
+
+  def cancel
+    render file: 'public/404.html', layout: false, status: :not_found 
   end
 end
