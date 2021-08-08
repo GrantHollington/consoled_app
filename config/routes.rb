@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #create post route for stripe payment
+  post 'payment/page', to: "payment#create", as: 'payment'
   resources :images
   resources :reviews
   resources :listings
