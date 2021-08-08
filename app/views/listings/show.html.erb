@@ -48,7 +48,7 @@
   <%= link_to 'Edit', edit_listing_path(@listing) %> 
 <% else %>
   <%# if the game/console has a buyer then provide sold button else show a buy button%>
-  <% if @listing.buyer%>
+  <% if @listing.buyer %>
     <button class="btn btn-danger">Sold</button>
   <% else %>
     <%# check if current user and they have a profile %>

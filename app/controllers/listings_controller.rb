@@ -9,6 +9,11 @@ class ListingsController < ApplicationController
 
   # GET /listings/1 or /listings/1.json
   def show
+    if params[:checkout] == "success"
+      #update buyer
+      @listing.buyer_id = current_user.profile.id
+      @listing.save
+    end
   end
 
   # GET /listings/new
@@ -37,6 +42,7 @@ class ListingsController < ApplicationController
     Seller.create(:profile_id => current_user.profile.id)
     #associate console listed to a seller
     @listing.seller_id = current_user.profile.seller.id
+    # @listing.buyer_id = current_user.profile.buyer.id
 
     respond_to do |format|
       if @listing.save
