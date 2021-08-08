@@ -41,5 +41,20 @@
   <%= @listing.seller.profile.user_name %>
 </p>
 
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
+|
+
+<%#if the game/ console listed is by the seller who is logged in show the edit button%>
+<% if(current_user && current_user.profile && (current_user.profile.id == @listing.seller.id)) %>
+  <%= link_to 'Edit', edit_listing_path(@listing) %> 
+<% else %>
+  <%# if the game/console has a buyer then provide sold button else show a buy button%>
+  <% if @listing.buyer%>
+    <button class="btn btn-danger">Sold</button>
+  <% else %>
+    <%# check if current user and they have a profile %>
+    <% if current_user && current_user.profile %>
+      <%= link_to "Buy", buyer_payment_path, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% end %>
 <%= link_to 'Back', listings_path %>
