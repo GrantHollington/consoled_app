@@ -53,7 +53,7 @@
   <% else %>
     <%# check if current user and they have a profile %>
     <% if current_user && current_user.profile %>
-      <%= link_to "Buy", buyer_payment_path, class: "btn btn-primary" %>
+      <%= link_to "Buy", root_path, class: "btn btn-primary" %>
     <% end %>
   <% end %>
 <% end %>
