@@ -8,7 +8,7 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :price %>
-    <%= f.input :product %>
+    <%= f.select :product, ["Console", "Game"] %>
     <%= f.input :condition %>
     <%# picture field changed from string to multiple image upload %>
     <%= f.file_field :pictures, multiple: true %>
