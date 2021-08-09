@@ -11,7 +11,8 @@ class ListingsController < ApplicationController
   def show
     if params[:checkout] == "success"
       #update buyer
-      @listing.buyer_id = current_user.profile.id
+      Buyer.create(profile_id: current_user.profile.id)
+      @listing.buyer_id = current_user.profile.buyer.id
       @listing.save
     end
   end
