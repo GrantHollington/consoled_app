@@ -3,7 +3,7 @@ class PaymentController < ApplicationController
     #fetch the listing
     @listing = Listing.find(params[:listing_id])
 
-    #update the buyer
+    #update the buyer - not good practice to have this here - moved to listings controller
     # @listing.buyer_id = current_user.profile.id
     # @listing.save
 
