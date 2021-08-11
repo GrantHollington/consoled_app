@@ -10,7 +10,7 @@ User journey - seller
 User journey - Buyer
 
 1. To be a buyer, user must first register and create a profile
-2. once set up with the account and profile created, all the products listed, all the products will have a buy button enabled. provided the car is not listed by the seller and once the car is sold the buy button must be changed to a sold button
+2. once set up with the account and profile created, all the products listed, all the products will have a buy button enabled. provided the game/console is not listed by the seller and once the game/console is sold the buy button must be changed to a sold button
 
 AUTHORISATION
 1. the listing must be edited only by the user who created it
