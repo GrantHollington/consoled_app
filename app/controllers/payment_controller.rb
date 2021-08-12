@@ -1,13 +1,13 @@
 class PaymentController < ApplicationController
   def create
-    #fetch the listing
+    #fetch the listing using params
     @listing = Listing.find(params[:listing_id])
 
-    #update the buyer
+    #update the buyer here is not good practice, moved to listings controller show method
     # @listing.buyer_id = current_user.profile.id
     # @listing.save
 
-    #fetch the root path
+    #fetch the root path in development or deployment 
     if ENV['RAILS_ENV'] == "development"
       root_path = "http://localhost:3000"
       Stripe.api_key = Rails.application.credentials.dig(:stripe, :stripe_api_key)
@@ -42,6 +42,7 @@ class PaymentController < ApplicationController
   end
 
   def cancel
+    #directs to public 404 page if user cancels payment
     render file: 'public/404.html', layout: false, status: :not_found 
   end
 end

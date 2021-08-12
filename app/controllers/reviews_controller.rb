@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
+    #all reviews
     @reviews = Review.all
   end
 
@@ -12,6 +13,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
+    #new review
     @review = Review.new
   end
 

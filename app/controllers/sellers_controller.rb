@@ -3,6 +3,7 @@ class SellersController < ApplicationController
 
   # GET /sellers or /sellers.json
   def index
+    #variable containing all sellers
     @sellers = Seller.all
   end
 
@@ -21,6 +22,7 @@ class SellersController < ApplicationController
 
   # POST /sellers or /sellers.json
   def create
+    #creating a seller
     @seller = Seller.new(seller_params)
 
     respond_to do |format|
@@ -36,6 +38,7 @@ class SellersController < ApplicationController
 
   # PATCH/PUT /sellers/1 or /sellers/1.json
   def update
+    #updating a seller 
     respond_to do |format|
       if @seller.update(seller_params)
         format.html { redirect_to @seller, notice: "Seller was successfully updated." }
@@ -49,6 +52,7 @@ class SellersController < ApplicationController
 
   # DELETE /sellers/1 or /sellers/1.json
   def destroy
+    #deleting a seller
     @seller.destroy
     respond_to do |format|
       format.html { redirect_to sellers_url, notice: "Seller was successfully destroyed." }
@@ -58,6 +62,7 @@ class SellersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    #finding a seller using params before all other actions
     def set_seller
       @seller = Seller.find(params[:id])
     end
