@@ -3,6 +3,7 @@ class BuyersController < ApplicationController
 
   # GET /buyers or /buyers.json
   def index
+    #all buyers
     @buyers = Buyer.all
   end
 
@@ -12,6 +13,7 @@ class BuyersController < ApplicationController
 
   # GET /buyers/new
   def new
+    #new buyer
     @buyer = Buyer.new
   end
 
@@ -21,6 +23,7 @@ class BuyersController < ApplicationController
 
   # POST /buyers or /buyers.json
   def create
+    #creating a new buyer
     @buyer = Buyer.new(buyer_params)
 
     respond_to do |format|
@@ -36,6 +39,7 @@ class BuyersController < ApplicationController
 
   # PATCH/PUT /buyers/1 or /buyers/1.json
   def update
+    #updating a buyer
     respond_to do |format|
       if @buyer.update(buyer_params)
         format.html { redirect_to @buyer, notice: "Buyer was successfully updated." }

@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles or /profiles.json
   def index
+    #all profiles
     @profiles = Profile.all
   end
 
@@ -23,6 +24,7 @@ class ProfilesController < ApplicationController
 
   # POST /profiles or /profiles.json
   def create
+    #creating a new profile 
     @profile = Profile.new(profile_params)
     #update foreign key on the back end
     @profile.user_id = current_user.id
@@ -45,6 +47,7 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1 or /profiles/1.json
   def update
+    #updating a profile
     respond_to do |format|
       if @profile.update(profile_params)
         #redirect to the new listing instead of profile show page through new_listing_path
@@ -59,6 +62,7 @@ class ProfilesController < ApplicationController
 
   # DELETE /profiles/1 or /profiles/1.json
   def destroy
+    #deleting a profile
     @profile.destroy
     respond_to do |format|
       format.html { redirect_to profiles_url, notice: "Profile was successfully destroyed." }
@@ -67,7 +71,8 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions. params for profile 
+    # private params to pass before action
     def set_profile
       @profile = Profile.find(params[:id])
     end

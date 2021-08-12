@@ -1,16 +1,18 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!
+  # before_action :authenticate_user! - not used
 
   # GET /listings or /listings.json
   def index
+    #contains all the listings
     @listings = Listing.all
   end
 
   # GET /listings/1 or /listings/1.json
   def show
+    #allowing a "buyer" to purchase 
     if params[:checkout] == "success"
-      #update buyer
+      #update buyer - creating a new buyer and linking that to the profile table before updating the buyer and saving 
       Buyer.create(profile_id: current_user.profile.id)
       @listing.buyer_id = current_user.profile.buyer.id
       @listing.save
@@ -39,12 +41,12 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
+    #creating a new listing
     @listing = Listing.new(listing_params)
     Seller.create(:profile_id => current_user.profile.id)
-    #associate console listed to a seller
+    #associate listing to a seller
     @listing.seller_id = current_user.profile.seller.id
-    # @listing.buyer_id = current_user.profile.buyer.id
-
+    #saving a new listing or displaying an error if new listing cannot be created.
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: "Listing was successfully created." }
@@ -58,6 +60,7 @@ class ListingsController < ApplicationController
 
   # PATCH/PUT /listings/1 or /listings/1.json
   def update
+    #updating the listings
     respond_to do |format|
       if @listing.update(listing_params)
         format.html { redirect_to @listing, notice: "Listing was successfully updated." }
@@ -71,6 +74,7 @@ class ListingsController < ApplicationController
 
   # DELETE /listings/1 or /listings/1.json
   def destroy
+    #deleting a listing
     @listing.destroy
     respond_to do |format|
       format.html { redirect_to listings_url, notice: "Listing was successfully destroyed." }

@@ -3,11 +3,12 @@ class ApplicationController < ActionController::Base
     #capture the query param to be passed to the view
     before_action :set_user_type
 
+    #setting the user type though params
     def set_user_type
         @user_type = params[:user_type]
     end
 
-    #devise by deafault redirects to homepage after login. if we need to redirect anywhere else we need to set that up in the after_sign_in method (create a custom redirect hook)
+    #devise by default redirects to homepage after login. if we need to redirect anywhere else we need to set that up in the after_sign_in method (create a custom redirect hook)
     def after_sign_in_path_for(profile)
 
         #if the user is a buyer and if they have a profile take them to the root path
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
             if(params[:user][:user_type] == "buyer")
                 root_path
             else
+                #if not take them to the new listing page
                 new_listing_path
             end
         else
