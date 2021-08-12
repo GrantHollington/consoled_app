@@ -5,6 +5,7 @@ class Listing < ApplicationRecord
   #association for uploading multiple images
   has_many_attached :pictures
   #makes price manditory
-  validates :price, presence: true
+  validates :price, :title, presence: true
 
+  
 end
